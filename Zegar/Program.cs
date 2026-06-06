@@ -127,7 +127,7 @@ class Program
     {
         Zegar z1 = new Zegar(1, 31, 12);
         RandomZegar z2 = new RandomZegar(12, 58, 31,5);
-        Zegar z3 = new Zegar(15, 21, 59);
+        Zegar z3 = new Zegar(16, 21, 59);
         CountdownZegar z4 = new CountdownZegar(17, 32, 0);
 
         List<Zegar> zegars = new List<Zegar>();
