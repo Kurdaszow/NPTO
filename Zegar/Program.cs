@@ -86,40 +86,28 @@ public class RandomZegar : Zegar
     }
 
 }
-public class CountdownZegar : Zegar
+public class AlarmZegar : Zegar
 {
-    public CountdownZegar(int time_hours, int time_minutes, int time_seconds) : base(time_hours,time_minutes,time_seconds) { 
+    private int alarm_hours;
+    private int alarm_minutes;
+    private int alarm_seconds;
+    public AlarmZegar(int time_hours, int time_minutes, int time_seconds, int alarm_hours, int alarm_minutes, int alarm_seconds) : base(time_hours, time_minutes, time_seconds)
+    {
+        this.alarm_hours = alarm_hours;
+        this.alarm_minutes = alarm_minutes;
+        this.alarm_seconds = alarm_seconds;
     }
     public override void PassTime()
     {
-        if (this.time_seconds == 0)
-        {
-            this.time_seconds = 59;
+        base.PassTime();
 
-            if (this.time_minutes == 0)
-            {
-                this.time_minutes = 59;
-                if (this.time_hours == 0)
-                {
-                    this.time_hours = 23;
-                    Console.WriteLine("ZERO, RESET TIMERA");
-                }
-                else
-                {
-                    this.time_hours--;
-                }
-            }
-            else
-            {
-                this.time_minutes--;
-            }
-        }
-        else
+        if (this.time_seconds == this.alarm_seconds && this.time_minutes == alarm_minutes && this.time_hours == this.alarm_hours)
         {
-            this.time_seconds--;
+            Console.WriteLine("ALARM ALARM ALARM ALARM");
         }
     }
 }
+
 
 class Program
 {
@@ -127,8 +115,8 @@ class Program
     {
         Zegar z1 = new Zegar(1, 31, 12);
         RandomZegar z2 = new RandomZegar(12, 58, 31,5);
-        Zegar z3 = new Zegar(15, 21, 59);
-        CountdownZegar z4 = new CountdownZegar(17, 32, 0);
+        AlarmZegar z3 = new AlarmZegar(15, 21, 59, 15, 22, 11);
+        Zegar z4 = new Zegar(17, 32, 0);
 
         List<Zegar> zegars = new List<Zegar>();
         zegars.Add(z1);
